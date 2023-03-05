@@ -25,14 +25,29 @@
         <input type="text" placeholder="Enter location">
         <button>Get Weather</button>
       </div>
-      <div class="weather">
-        <h2>Current Weather</h2>
-        <div class="temperature">Temperature: <span></span></div>
-        <div class="conditions">Conditions: <span></span></div>
-        <div class="humidity">Humidity: <span></span></div>
-        <div class="wind">Wind: <span></span></div>
+
+    <head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <div class="background">
+      <div class="Circle1"></div>
+      <div class="Circle2"></div>
+      <div class="Circle3"></div>
+      <div class="content">
+        <h1 class="Condition"><i class="material-icons sun">wb_sunny</i>{{ description }}</h1>
+        <h1 class="Temp">{{ temp }}°C</h1>
+        <h1 class="Time">09:35</h1>
+        <h1 class="Location"><i class="material-icons locationIcon">place</i> Raleigh, NC</h1>
       </div>
     </div>
+    </body>
+
+
 
 
 
