@@ -7,16 +7,24 @@ import json
 
 def home_page(request):
 
-    if request.method == 'post':
-        ...
+    if request.method == 'POST':
+        city_input = request.POST.get('city_input')
+        weather_data = get_weather_data(request, city_input)
 
+        context = {
+            'temp': math.ceil(weather_data['main']['temp']),
+            'description': weather_data['weather'][0]['main'],
+            'city': city_input,
 
-    city = get_user_location()
-    weather_data = get_weather_data(request, city)
+        }
+        return render(request, 'home_page.html', context)
+
+    user_current_location = get_user_location()
+    weather_data = get_weather_data(request, user_current_location['city'])
     context = {
         'temp': math.ceil(weather_data['main']['temp']),
         'description': weather_data['weather'][0]['main'],
-        'city': city,
+        'city': user_current_location['city'],
     }
 
     return render(request, 'home_page.html', context)
@@ -44,12 +52,15 @@ def get_ip():
 def get_user_location():
     ip_address = get_ip()
     response = requests.get(f'https://ipapi.co/{ip_address}/json/').json()
+
     location_data = {
         "ip": ip_address,
         "city": response.get("city"),
         "region": response.get("region"),
         "country": response.get("country_name")
     }
-    return location_data['city']
+    print(location_data)
+    return location_data
+
 
 

@@ -4,36 +4,36 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="{% static 'home_page_style.css' %}">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 
 
 <body>
-<body>
 
-
-<div class="container">
-      <h1>Weather App</h1>
+    <div class="container">
+      <h1>WeatherDim</h1>
       <div class="location">
         <h2>Location</h2>
-        <input type="text" placeholder="Enter location">
-        <button>Get Weather</button>
+
+          <form action="{% url 'home_page' %}" method="post">
+            {% csrf_token %}
+            <input name="city_input" type="text" placeholder="Enter location">
+            <button type="submit">Get Weather</button>
+          </form>
+
       </div>
 
-    <head>
-  <link rel="stylesheet" type="text/css" href="style.css">
-  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-</head>
-<body>
-  <div class="container">
+    </div>
+
+    <div class="container">
     <div class="background">
       <div class="Circle1"></div>
       <div class="Circle2"></div>
@@ -45,19 +45,17 @@
         <h1 class="Location"><i class="material-icons locationIcon">place</i>{{ city }}</h1>
       </div>
     </div>
-</body>
+    </div>
+
+
 
     <script>
         var today = new Date();
         var time = today.getHours() + ":" + today.getMinutes()
-
         document.getElementById('time').innerHTML=time
     </script>
 
 
-
-
-</body>
 </body>
 
 
