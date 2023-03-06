@@ -1,26 +1,15 @@
 import math
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import requests
 import json
 
 
 def home_page(request):
 
-    if request.method == 'POST':
-        city_input = request.POST.get('city_input')
-        weather_data = get_weather_data(request, city_input)
-
-        context = {
-            'temp': math.ceil(weather_data['main']['temp']),
-            'description': weather_data['weather'][0]['main'],
-            'city': city_input,
-
-        }
-        return render(request, 'home_page.html', context)
-
     user_current_location = get_user_location()
     weather_data = get_weather_data(request, user_current_location['city'])
+
     context = {
         'temp': math.ceil(weather_data['main']['temp']),
         'description': weather_data['weather'][0]['main'],
@@ -30,6 +19,21 @@ def home_page(request):
     return render(request, 'home_page.html', context)
 
 
+def get_info_from_search(request):
+
+    if request.method == 'GET':
+        city_input = request.GET.get('city_input')
+        weather_data = get_weather_data(request, city_input)
+
+        context = {
+            'temp': math.ceil(weather_data['main']['temp']),
+            'description': weather_data['weather'][0]['main'],
+            'city': city_input,
+        }
+        print(weather_data)
+        return render(request, 'home_page.html', context)
+
+
 def get_weather_data(request, city):
     api_key = 'd9cfcf4247b97e74578bb2a0f9e6cedf'
 
@@ -37,7 +41,7 @@ def get_weather_data(request, city):
     response = requests.get(api_request)
 
     data = response.json()
-    print(data)
+
     return data
 
 
@@ -59,7 +63,7 @@ def get_user_location():
         "region": response.get("region"),
         "country": response.get("country_name")
     }
-    print(location_data)
+
     return location_data
 
 

@@ -23,7 +23,7 @@
       <div class="location">
         <h2>Location</h2>
 
-          <form action="{% url 'home_page' %}" method="post">
+          <form action="{% url 'search' %}" method="get">
             {% csrf_token %}
             <input name="city_input" type="text" placeholder="Enter location">
             <button type="submit">Get Weather</button>
