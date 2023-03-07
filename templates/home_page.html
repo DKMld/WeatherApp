@@ -33,13 +33,16 @@
 
     </div>
 
-    <div class="container">
+    <div class="container" id="weather_container">
     <div class="background">
       <div class="Circle1"></div>
       <div class="Circle2"></div>
       <div class="Circle3"></div>
       <div class="content">
-        <h1 class="Condition"><i class="material-icons sun">wb_sunny</i>{{ description }}</h1>
+        <h1 id='weather_description' class="Condition" ">
+            {{ description }}
+        </h1>
+
         <h1 class="Temp">{{ temp }}°C</h1>
         <h1 class="Time" id="time"></h1>
         <h1 class="Location"><i class="material-icons locationIcon">place</i>{{ city }}</h1>
@@ -53,6 +56,26 @@
         var today = new Date();
         var time = today.getHours() + ":" + today.getMinutes()
         document.getElementById('time').innerHTML=time
+
+        var weather = document.getElementById('weather_description').innerText
+        var divContainer = document.getElementById('weather_container')
+        console.log(weather)
+        console.log(divContainer)
+
+
+        if (weather === 'Rain') {
+            document.body.style.backgroundImage = "url('')";
+            } else if (weather === 'Clouds') {
+                divContainer.style.backgroundImage="url('snimka.jeg')";
+            } else if (weather === 'Clear') {
+                document.body.style.backgroundImage = "url('')";
+            }else if (weather === 'Haze') {
+                document.body.style.backgroundImage = "url('')";
+            } else {
+                document.body.style.backgroundImage= "url('')";
+        }
+
+
     </script>
 
 

@@ -1,8 +1,6 @@
 import math
-
 from django.shortcuts import render, redirect
 import requests
-import json
 
 
 def home_page(request):
@@ -25,13 +23,15 @@ def get_info_from_search(request):
         city_input = request.GET.get('city_input')
         weather_data = get_weather_data(request, city_input)
 
-        context = {
-            'temp': math.ceil(weather_data['main']['temp']),
-            'description': weather_data['weather'][0]['main'],
-            'city': city_input,
-        }
-        print(weather_data)
-        return render(request, 'home_page.html', context)
+        if len(city_input) > 0:
+            context = {
+                'temp': math.ceil(weather_data['main']['temp']),
+                'description': weather_data['weather'][0]['main'],
+                'city': city_input,
+            }
+            return render(request, 'home_page.html', context)
+
+        return redirect('home_page')
 
 
 def get_weather_data(request, city):
@@ -43,9 +43,6 @@ def get_weather_data(request, city):
     data = response.json()
 
     return data
-
-
-
 
 
 def get_ip():
@@ -65,6 +62,3 @@ def get_user_location():
     }
 
     return location_data
-
-
-
