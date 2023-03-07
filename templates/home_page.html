@@ -64,15 +64,15 @@
 
 
         if (weather === 'Rain') {
-            document.body.style.backgroundImage = "url('')";
+            divContainer.style.backgroundImage = "url('{% static 'rain.jpg' %}')";
             } else if (weather === 'Clouds') {
-                divContainer.style.backgroundImage="url('snimka.jeg')";
+                divContainer.style.backgroundImage ="url('{% static 'clouds.jpg' %}')";
             } else if (weather === 'Clear') {
-                document.body.style.backgroundImage = "url('')";
+                divContainer.style.backgroundImage = "url('{% static 'clear.jpg' %}')";
             }else if (weather === 'Haze') {
-                document.body.style.backgroundImage = "url('')";
+                divContainer.style.backgroundImage = "url('{% static 'haze.jpg' %}')";
             } else {
-                document.body.style.backgroundImage= "url('')";
+                divContainer.style.backgroundImage = "url('')";
         }
 
 
