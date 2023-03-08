@@ -51,17 +51,25 @@
     </div>
 
 
+    <div class="hours--prognosis--container">
+        <div>
+
+        </div>
+    </div>
+
+
+
+
+
+
 
     <script>
-        var today = new Date();
-        var time = today.getHours() + ":" + today.getMinutes()
+        let today = new Date();
+        let time = today.getHours() + ":" + today.getMinutes()
         document.getElementById('time').innerHTML=time
 
-        var weather = document.getElementById('weather_description').innerText
-        var divContainer = document.getElementById('weather_container')
-        console.log(weather)
-        console.log(divContainer)
-
+        let weather = document.getElementById('weather_description').innerText
+        let divContainer = document.getElementById('weather_container')
 
         if (weather === 'Rain') {
             divContainer.style.backgroundImage = "url('{% static 'rain.jpg' %}')";
